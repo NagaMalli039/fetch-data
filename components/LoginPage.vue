@@ -26,10 +26,10 @@
               required
               class="q-mb-md"
             />
-            <q-btn type="submit" label="Login" color="primary" class="full-width" />
+            <q-btn @click="logData" type="submit" label="Login" color="primary" class="full-width" />
             <p style="margin-left: 10rem;">NOT A MEMBER? <label style="cursor: pointer;"> 
 
-            <NuxtLink to="/register" style="color:black">Signup</NuxtLink></label> </p>
+            <NuxtLink to="/register" style="color:black">Register</NuxtLink></label> </p>
 
           </q-form>
         </q-card-section>
@@ -42,10 +42,16 @@
   <script setup>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
+  import axios from 'axios'
+  import { useUserStore } from '@/stores/useUserStore';
 
-  const email = ref('')
-  const password = ref('')
+
   
+const email = ref('')
+const password = ref('')
+const router=useRouter(); 
+const userStore = useUserStore();
+
   const login = () => {
     console.log('Email:', email.value)
     console.log('Password:', password.value)
@@ -54,9 +60,59 @@
 
     }
 
-  const redirectToRegister = () => {
-  router.push('/register')
+//object 
+
+// const logData=async()=>{
+
+//   const loginData={
+//   email:email.value,
+//   password:password.value
+// }
+// }
+
+// try {
+//   console.log(loginData, 'loginData')
+//   const response = await axios.post('/api/register', loginData);
+
+//   console.log(response.data);
+//   // Optionally, redirect to login page or show success message
+//   router.push('/');
+// }
+//   catch (error) {
+//   console.error('Error registering user:', error);
+//   // Handle error (show error message, etc.)
+// }
+
+
+const logData=async()=>{
+
+//object 
+const loginData={
+  email:email.value,
+  password:password.value
 }
+
+try {
+  console.log(loginData, 'loginData')
+  const response = await axios.post('/api/login', loginData);
+  console.log(response.data);
+
+  const userName = response.data.name; // Assuming the response includes the user's name
+    userStore.setName(userName); // Set the user's name in the store
+
+    // Store the user's name
+
+console.log(userName, 'NAME')
+
+  // Redirect to Home page 
+
+  router.push('/');
+
+} catch (error) {
+  console.error('Error logging in user:', error);
+  // Handle error (show error message, etc.)
+}
+};
 
   </script>
   
@@ -65,4 +121,3 @@
     width: 100%;
   }
   </style>
-  

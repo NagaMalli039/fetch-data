@@ -136,12 +136,12 @@
   import axios from 'axios';
   
   
-  // DB link
   const router = useRouter();
   
   const navigateTo = (route) => {
     router.push(route);
   };
+
   const columns = [
     {
       name: 'index',
@@ -163,7 +163,6 @@
     { name: 'dob', label: 'Date of birth', field: 'dob' , align: 'left'},
     { name: 'Action', label: '', field: 'action', align: 'left', sortable: false },
   ]
-  
   
       const nextPage = ref(2)
       const loading = ref(false)
@@ -187,7 +186,8 @@
           color: 'green',
           position,
         });
-      };
+      }; 
+      
       console.log(isEdit.value,"isEdit")
       const openEditDialog = (r) => {
         console.log(r,"r")

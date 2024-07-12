@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
         return result;
 
     } catch (err) {
+        
         console.error('Error fetching users:', err );
 
         return {error: 'Failed to fetch users'};

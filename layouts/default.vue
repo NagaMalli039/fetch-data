@@ -18,10 +18,16 @@
     <NuxtLink to="/InfiniteScroll" class="text-white link-unstyled q-pa-md">Scroll</NuxtLink>
     <NuxtLink to="/user" class="text-white link-unstyled q-pa-md">TASK</NuxtLink>
     <NuxtLink to="/connect" class="text-white link-unstyled q-pa-md">DB Check</NuxtLink>
-
+<!-- 
     <div style="display:flex;margin-left:auto;flex-direction: right;" >
       <NuxtLink to="/login" class="text-white link-unstyled q-pa-md">Login</NuxtLink>
-    </div>
+    </div> -->
+
+    <div style="display:flex;margin-left:auto;flex-direction: right;">
+            <span v-if="loggedInUserName">Hello, {{ userName }}</span>
+            <NuxtLink v-if="!loggedInUserName" to="/login" class="text-white link-unstyled q-pa-md">Login</NuxtLink>
+          </div>
+
 
 </div>
 
@@ -82,12 +88,19 @@
 <script setup>
 import { useCartStore } from '@/stores/cart' 
 import { Quasar } from 'quasar';
+import { useUserStore } from '@/stores/useUserStore';
 
 
 const cartStore=useCartStore(); 
+const userStore = useUserStore();
 
 const cartLength=computed(()=>cartStore.addedCartItem.length)
-const cartItem = computed(()=> cartStore.cartItemCount);  
+const cartItem = computed(()=> cartStore.cartItemCount);
+const loggedInUserName = computed(() => userStore.name.value);
+
+console.log(loggedInUserName, 'logged user')
+console.log(userStore.name.value, 'userName')
+
 
 const openCart=ref(false);
 const addedItem=ref([]);

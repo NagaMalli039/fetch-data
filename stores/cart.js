@@ -2,6 +2,8 @@
 
 import { defineStore } from 'pinia';
 import axios from 'axios'
+import { useUserStore } from '@/stores/useUserStore'; // Import the user store
+
 
 // syntax
 
@@ -9,8 +11,11 @@ export const useCartStore = defineStore('cart', {
   state: () => ({
     items: [], // Array of products in the cart
     count:0, 
-    addedCartItem:[] 
+    addedCartItem:[],
+    loggedInUserName: '', // User's name
+
   }),
+
 
   getters: {
 

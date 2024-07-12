@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
         return rows;
 
     } catch (err) {
+        
         console.error('Error fetching users:', err);
         return {error: 'Failed to fetch users'};
     }
