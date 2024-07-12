@@ -12,8 +12,8 @@ export const useCartStore = defineStore('cart', {
     items: [], // Array of products in the cart
     count:0, 
     addedCartItem:[],
-    loggedInUserName: '', // User's name
-
+    loggedInUserName:[]
+    
   }),
 
 

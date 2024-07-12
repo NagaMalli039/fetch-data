@@ -27,29 +27,30 @@
               class="q-mb-md"
             />
             <q-btn @click="logData" type="submit" label="Login" color="primary" class="full-width" />
-            <p style="margin-left: 10rem;">NOT A MEMBER? <label style="cursor: pointer;"> 
+            <p style="margin-left: 10rem;"> NOT A MEMBER? <label style="cursor: pointer;"> 
 
             <NuxtLink to="/register" style="color:black">Register</NuxtLink></label> </p>
 
           </q-form>
+
         </q-card-section>
       </q-card>
     </q-page>
 </q-page-container>
 </q-layout>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import axios from 'axios'
   import { useUserStore } from '@/stores/useUserStore';
 
-
   
 const email = ref('')
 const password = ref('')
-const router=useRouter(); 
+
+const router=useRouter();  
 const userStore = useUserStore();
 
   const login = () => {
@@ -88,6 +89,7 @@ const logData=async()=>{
 
 //object 
 const loginData={
+  
   email:email.value,
   password:password.value
 }
@@ -95,7 +97,9 @@ const loginData={
 try {
   console.log(loginData, 'loginData')
   const response = await axios.post('/api/login', loginData);
+
   console.log(response.data);
+
 
   const userName = response.data.name; // Assuming the response includes the user's name
     userStore.setName(userName); // Set the user's name in the store
@@ -106,7 +110,7 @@ console.log(userName, 'NAME')
 
   // Redirect to Home page 
 
-  router.push('/');
+  router.push('/dashboard');
 
 } catch (error) {
   console.error('Error logging in user:', error);

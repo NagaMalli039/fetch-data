@@ -12,7 +12,6 @@
   <!-- INPUT FORM -->
   <div style="display: flex; flex-direction: column; gap: 1rem">
 
-
   <q-input filled v-model="avatar" label="Avatar" />
 
       <div v-if="productNameError" class="error-message" style="color: red">
@@ -133,7 +132,7 @@ import { useQuasar } from "quasar";
 
 const { notify } = useQuasar();
 
-// axios.defaults.baseURL = "https://667d325c297972455f63f9fc.mockapi.io";
+axios.defaults.baseURL = "https://667d325c297972455f63f9fc.mockapi.io";
 
 const avatar = ref("");
 const name = ref("");

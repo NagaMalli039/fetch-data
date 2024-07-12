@@ -1,7 +1,7 @@
 <template>
     <div>
     
-    <h1>My Base Root File </h1> 
+<LoginPage />
 
 </div>
 </template>

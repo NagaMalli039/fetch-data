@@ -23,11 +23,16 @@
       <NuxtLink to="/login" class="text-white link-unstyled q-pa-md">Login</NuxtLink>
     </div> -->
 
-    <div style="display:flex;margin-left:auto;flex-direction: right;">
-            <span v-if="loggedInUserName">Hello, {{ userName }}</span>
-            <NuxtLink v-if="!loggedInUserName" to="/login" class="text-white link-unstyled q-pa-md">Login</NuxtLink>
+    <div v-if="userStore.name.length<=0" style="display:flex;margin-left:auto;flex-direction: right;"> 
+            <span v-if="userStore.name.length<= 0">{{ userStore.name }}</span>
+            
+            <NuxtLink to="/login" class="text-white link-unstyled q-pa-md">Login</NuxtLink>
+
           </div>
 
+          <div v-if="userStore.name.length > 0" style="display:flex;margin-left:auto;flex-direction: right;"> 
+            <q-btn @click="logout" class="text-white link-unstyled q-pa-md">Logout </q-btn>
+          </div>
 
 </div>
 
@@ -88,23 +93,28 @@
 <script setup>
 import { useCartStore } from '@/stores/cart' 
 import { Quasar } from 'quasar';
-import { useUserStore } from '@/stores/useUserStore';
+import { useRouter } from 'vue-router';
 
+import { useUserStore } from '@/stores/useUserStore';
 
 const cartStore=useCartStore(); 
 const userStore = useUserStore();
+const route=useRouter();
 
 const cartLength=computed(()=>cartStore.addedCartItem.length)
 const cartItem = computed(()=> cartStore.cartItemCount);
-const loggedInUserName = computed(() => userStore.name.value);
-
-console.log(loggedInUserName, 'logged user')
-console.log(userStore.name.value, 'userName')
+console.log(userStore.name, 'Name in default page')
 
 
 const openCart=ref(false);
 const addedItem=ref([]);
 
+const logout=async()=>{
+
+    userStore.name="";
+    console.log('user logged out');
+    route.push('/');
+}
 console.log(addedItem, 'addeditem');
 
 const openDialog=()=> {

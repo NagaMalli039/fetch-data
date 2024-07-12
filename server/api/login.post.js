@@ -1,7 +1,11 @@
 import { getConnection } from '~/server/db';
 
 export default defineEventHandler(async (event) => {
+    
+    // readBody - data by default 
   const body = await readBody(event);
+
+  console.log(body, 'body data');
 
   const { email, password } = body;
 
