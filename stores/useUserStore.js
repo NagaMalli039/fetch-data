@@ -1,20 +1,22 @@
-// stores/useUserStore.js
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-// storename
+// exporting it to use it in other components
+
 export const useUserStore = defineStore('user', () => {
-  const name = ref('');
+  const name = ref('')
 
-const setName = (newName) => {
-console.log(newName, 'newName');
-    name.value = newName;
-  
-};
+  const setName = (newName) => {
+    name.value = newName
+  }
+
+  const clearName = () => {
+    name.value = ''
+  }
 
   return {
     name,
     setName,
-  };
-
-});
+    clearName
+  }
+})

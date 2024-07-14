@@ -21,7 +21,7 @@
   
     <div class="q-pa-md">
       <div class="q-gutter-y-md"
-           style="
+        style="
         max-width: 100% ;
          background-color:#F5F5F5;
          display:flex;
@@ -49,10 +49,12 @@
           row-key="user_id">
   
         <template v-slot:top-right>
+
           <div style="display: flex;gap:1rem">
             <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
               <template v-slot:append>
               <q-icon name="search" /> 
+              
         </template>
             
             </q-input>
@@ -189,6 +191,7 @@
       }; 
       
       console.log(isEdit.value,"isEdit")
+      
       const openEditDialog = (r) => {
         console.log(r,"r")
         selectedData.value = r;

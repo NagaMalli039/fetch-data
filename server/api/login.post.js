@@ -1,7 +1,7 @@
 import { getConnection } from '~/server/db';
 
 export default defineEventHandler(async (event) => {
-    
+
     // readBody - data by default 
   const body = await readBody(event);
 
@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const connection = await getConnection();
+    
     const [rows] = await connection.execute(
       'SELECT * FROM patients WHERE email = ? AND password = ?', 
       [email, password]
