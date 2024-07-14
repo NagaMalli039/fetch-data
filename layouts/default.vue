@@ -6,8 +6,9 @@
         <q-toolbar elevated class="bg-primary text-white bold q-pt-lg q-space-between">
           
           <div class="q-gutter-md q-mr-sm" style="display: flex; align-items: center; flex: 1;">
+
             <div v-if="userStore.name">
-              
+
               <NuxtLink to="/dashboard" class="text-white link-unstyled q-pa-md">Dashboard</NuxtLink>
               <NuxtLink to="/about" class="text-white link-unstyled q-pa-md">About</NuxtLink>
               <NuxtLink to="/products" class="text-white link-unstyled q-pa-md">Products</NuxtLink>
@@ -33,6 +34,7 @@
 
           <div v-if="userStore.name" style="display: flex; align-items: center; margin-left: auto;">
             <span class="q-mr-md"> {{ userStore.name }}</span>
+            
             <q-btn @click="logout" class="text-white link-unstyled q-pa-md">Logout</q-btn>
           </div>
 
