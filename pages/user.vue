@@ -31,7 +31,7 @@
 
         <q-tabs v-model="tab"
             class="text-blue">
-  
+
           <q-tab name="user"  label="User" @click="navigateTo('/user')" />
           <q-tab name="task"  label="task" @click="navigateTo('/task')"/>
   
@@ -50,12 +50,10 @@
   
         <template v-slot:top-right>
 
-          <div style="display: flex;gap:1rem">
+          <div style="display: flex; gap:1rem">
             <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
               <template v-slot:append>
-              <q-icon name="search" /> 
-              
-        </template>
+              <q-icon name="search" /> </template>
             
             </q-input>
   
@@ -133,7 +131,7 @@
   </template>
   
   <script setup>
-  import { ref, computed, nextTick } from 'vue'
+  import { ref, computed, nextTick, onMounted } from 'vue'
   import { useRouter } from 'vue-router';
   import axios from 'axios';
   

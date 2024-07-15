@@ -11,8 +11,6 @@
 
   <!-- INPUT FORM -->
   <div style="display: flex; flex-direction: column; gap: 1rem">
-
-
   <q-input filled v-model="avatar" label="Avatar" />
 
       <div v-if="productNameError" class="error-message" style="color: red">

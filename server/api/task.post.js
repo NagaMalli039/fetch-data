@@ -10,8 +10,7 @@ export default defineEventHandler(async (event) => {
   const { email, password } = body; 
 
   try {
-    const connection = await getConnection();
-    
+    const connection = await getConnection();    
     const [rows] = await connection.execute (
       'SELECT * FROM patients WHERE email = ? AND password = ?', 
       [email, password]

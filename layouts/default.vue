@@ -9,14 +9,12 @@
 
             <div v-if="userStore.name">
 
-              <NuxtLink to="/dashboard" class="text-white link-unstyled q-pa-md">Dashboard</NuxtLink>
               <NuxtLink to="/about" class="text-white link-unstyled q-pa-md">About</NuxtLink>
               <NuxtLink to="/products" class="text-white link-unstyled q-pa-md">Products</NuxtLink>
               <NuxtLink to="/table" class="text-white link-unstyled q-pa-md">Table</NuxtLink>
               <NuxtLink to="/table2" class="text-white link-unstyled q-pa-md">Table2</NuxtLink>
               <NuxtLink to="/InfiniteScroll" class="text-white link-unstyled q-pa-md">Scroll</NuxtLink>
               <NuxtLink to="/user" class="text-white link-unstyled q-pa-md">TASK</NuxtLink>
-              <NuxtLink to="/connect" class="text-white link-unstyled q-pa-md">DB Check</NuxtLink>
 
               <div style="margin-right: auto; display: flex; align-items: center;">
             <q-btn flat icon="add_shopping_cart" label="Cart" @click="openDialog">
@@ -28,14 +26,17 @@
             </div>
 
             <div v-else style="margin-left: auto;">
+  
               <q-btn><NuxtLink to="/" class="text-white link-unstyled q-pa-md">Login</NuxtLink></q-btn>
+
             </div>
           </div>
 
           <div v-if="userStore.name" style="display: flex; align-items: center; margin-left: auto;">
             <span class="q-mr-md"> {{ userStore.name }}</span>
-            
+
             <q-btn @click="logout" class="text-white link-unstyled q-pa-md">Logout</q-btn>
+            
           </div>
 
           </q-toolbar>

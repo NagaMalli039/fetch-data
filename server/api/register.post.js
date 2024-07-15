@@ -11,10 +11,13 @@ export default defineEventHandler(async (event) => {
             'INSERT INTO patients (name, email, password) VALUES (?, ?, ?)', 
             [name, email, password]
         );
+
         connection.release();
 
         return { success: true, message: 'User registered successfully' };
-    } catch (err) {
+    }
+    catch (err)
+    {
         console.error('Error registering user:', err);
         return { success: false, error: 'Failed to register user' };
     }

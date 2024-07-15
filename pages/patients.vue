@@ -1,8 +1,8 @@
 <template>
     <div>
 
-You are logged in now..
-    
+        
+
     </div>
 </template>
 
@@ -11,6 +11,5 @@ You are logged in now..
 </script>
 
 <style lang="scss" scoped>
-
 
 </style>
