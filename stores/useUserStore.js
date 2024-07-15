@@ -9,14 +9,14 @@ export const useUserStore = defineStore('user', () => {
   const setName = (newName) => {
     name.value = newName
   }
-
   const clearName = () => {
     name.value = ''
   }
 
+  
   return {
     name,
-    setName,
+    setName,    
     clearName
   }
 })

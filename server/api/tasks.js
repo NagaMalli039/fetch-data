@@ -17,14 +17,15 @@ export default defineEventHandler(async (event) => {
             user.lastName
     
         FROM task
-        JOIN user ON task.assignTo = user.user_id`);
+        JOIN user ON task.assignTo = user.user_id `);
 
         connection.release();
         console.log('data from server for tasks',rows)
+
         return rows;
 
-    } catch (err) {
-        
+    } catch (err) 
+    {
         console.error('Error fetching users:', err);
         return {error: 'Failed to fetch users'};
     }

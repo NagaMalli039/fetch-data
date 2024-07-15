@@ -1,19 +1,30 @@
-import {getConnection} from '~/server/db';
+import { getConnection } from '~/server/db';
 
 export default defineEventHandler(async (event) => {
-    const body = await readBody(event)
-    try {
-        const connection = await getConnection();
+  const body = await readBody(event);
+  const { firstname, lastname, dob, email, age } = body;
 
-        const [result] = await connection.execute(`INSERT INTO user (firstname,lastname,email,age,dob) VALUES ('${body.firstname}','${body.lastname}','${body.email}','${body.age}','${body.dob}')`);
-        connection.release();
-        // console.log(rows)
-        return result;
+  // Ensure the date string is in 'YYYY-MM-DD' format
+  const formattedDob = new Date(dob);
+  if (isNaN(formattedDob)) {
+    return { error: 'Invalid date format' };
+  }
+  const yyyy = formattedDob.getFullYear();
+  const mm = String(formattedDob.getMonth() + 1).padStart(2, '0');
+  const dd = String(formattedDob.getDate()).padStart(2, '0');
+  const dbFormattedDob = `${yyyy}-${mm}-${dd}`;
 
-    } catch (err) {
-        
-        console.error('Error fetching users:', err );
-
-        return {error: 'Failed to fetch users'};
-    }
+  try {
+    const connection = await getConnection();
+    console.log(body, 'Body');
+    const [result] = await connection.execute(
+      'INSERT INTO user (firstname, lastname, email, age, dob) VALUES (?, ?, ?, ?, ?)',
+      [firstname, lastname, email, age, dbFormattedDob]
+    );
+    connection.release();
+    return result;
+  } catch (err) {
+    console.error('Error inserting user:', err);
+    return { error: 'Failed to insert user' };
+  }
 });

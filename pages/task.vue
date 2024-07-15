@@ -2,6 +2,7 @@
     <div>
         <q-dialog v-model="confirm" persistent>
         <q-card>
+
           <q-card-section class="row items-center">
             <q-avatar icon="delete" color="primary" text-color="white" />
             <span class="q-ml-sm">Are you sure you want to delete?</span>
@@ -11,7 +12,9 @@
             <q-btn flat label="Cancel" color="primary" v-close-popup @click="closeDeletePopup" />
             <q-btn flat label="Yes" color="primary" v-close-popup @click="deleteTask" />
           </q-card-actions>
+        
         </q-card>
+
       </q-dialog>
       </div>
       <div>
@@ -23,11 +26,11 @@
           </q-card-section>
   
           <q-card-section class="q-pt-none">
+
             <q-input dense v-model="task" autofocus @keyup.enter="prompt = false" placeholder="Task"/>
             <q-input dense v-model="description" autofocus @keyup.enter="prompt = false" placeholder="Task Description"/>
             
           
-    
         <q-select
           dense
           :model-value="model"
@@ -39,8 +42,8 @@
           @input-value="setModel"
          
           placeholder="Assign To"
-          style="width: 350px; padding-bottom: 32px"
-        >
+          style="width: 350px; padding-bottom: 32px">
+
           <template v-slot:no-option>
             <q-item>
               <q-item-section class="text-grey">
@@ -146,15 +149,18 @@
   
   </template>
       </q-table>
+      
     </div>
-     <div style="flex: 1;background-color: #F5F5F5;">
+
+    <!-- <div style="flex: 1;background-color: #F5F5F5;">
       <calendar :rowData="rows"/>
     </div>
-  
+   -->
+
     </div>
     </template>
     
-    <script>
+<script>
     import { ref } from 'vue'
     import { useRouter } from 'vue-router';
     import axios from 'axios';
@@ -179,10 +185,7 @@
     { name: 'taskDate', label: 'Task Date', field: 'taskDate' , align: 'left',},
     { name: 'action', label: '', field: 'action', align: 'left', sortable: false }
   ];
-  
-    
-  
-    
+   
     export default {
       setup () {
         const prompt = ref(false)
@@ -198,7 +201,8 @@
     const selectedData = ref(null)
     const confirm = ref(false)
     const isEdit = ref(false)
-    const notiMessage = ref('');
+    const notiMessage = ref(''); 
+
     console.log(isEdit.value,"editvalue")
 
   const $q = useQuasar()
@@ -220,6 +224,7 @@
             console.log(error)
           }
         }
+        
       const addTask = async ()=>{
            const taskData ={
             task:task.value,

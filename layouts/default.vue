@@ -33,7 +33,7 @@
           </div>
 
           <div v-if="userStore.name" style="display: flex; align-items: center; margin-left: auto;">
-            <span class="q-mr-md"> {{ userStore.name }}</span>
+            <span class="q-mr-md"> Hello , {{ userStore.name }}</span>
 
             <q-btn @click="logout" class="text-white link-unstyled q-pa-md">Logout</q-btn>
             

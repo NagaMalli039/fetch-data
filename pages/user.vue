@@ -88,6 +88,7 @@
       <q-card style="min-width: 350px">
 
         <q-card-section>
+          
           <div class="text-h6" v-if="isEdit==false">Add User</div>
           <div class="text-h6" v-else> Update User </div>
           
@@ -208,6 +209,7 @@
         selectedData.value = r;
         confirm.value = true;
       }
+
       const closeDeletePopup =()=>{
         confirm.value=false
       }
@@ -215,20 +217,25 @@
       // adding users 
 
       const addUser = async() => {
-        const userData ={
-          
+
+        const userData = { 
+
           firstname:firstname.value,
           lastname:lastname.value,
           email:email.value,
           age:age.value,
           dob:date.value,
+        
         }
-        try {
+
+        try { 
           console.log(userData)
           const response = await axios.post('api/user',userData)
+
           console.log(response.data,"message")
 
-          fetchAllUsers()
+          fetchAllUsers();
+
           notiMessage.value = 'Data insertion success'
           showNotif('top-right');
           
